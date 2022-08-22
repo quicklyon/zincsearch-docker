@@ -1,0 +1,17 @@
+{
+    "Name": "ZincSearch",
+    "Version": "0.2.9",
+    "Home": "https://zincsearch.com/",
+    "Maintainer": "zhouyueqiu zhouyueqiu@easycorp.ltd",
+    "GitUrl": "https://github.com/zinclabs/zinc",
+    "DockerfileUrl": "https://github.com/quicklyon/zincsearch-docker",
+    "DockerfileRepoBranch":"master",
+    "InstallDocUrl": "https://www.qucheng.com/app-install/install-zincsearch-<number>.html",
+    "Docker": {
+        "Name": "zincsearch",
+        "OS": "debian-11",
+        "ImageOS": "easysoft/debian:11",
+        "Repo": "https://hub.docker.com/r/easysoft/zincsearch",
+        "TagUrl": "https://hub.docker.com/r/easysoft/zincsearch/tags/"
+    }
+}

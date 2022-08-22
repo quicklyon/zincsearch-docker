@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# shellcheck disable=SC1091
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+[ -n "${DEBUG:+1}" ] && set -x
+
+# Load libraries
+. /opt/easysoft/scripts/liblog.sh
+. /opt/easysoft/scripts/libmysql.sh
+. /opt/easysoft/scripts/libfs.sh
+
+# Load Global environment variables
+. /etc/s6/s6-init/envs
+
+#==================================#
+# Prepare persistence directories. #
+#==================================#
+info "Prepare persistence directories."
+for pdir in "${PHP_PERSISTENCE_LIST[@]}"
+do
+    # Ensure a directory exists and,is owned by the given user
+    ensure_dir_exists "$pdir" "www-data"
+done

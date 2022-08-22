@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  zincsearch:
+    image: hub.qucheng.com/app/zincsearch:${TAG:-latest}
+    container_name: zincsearch
+    ports:
+      - '8080:4080'
+    volumes:
+      - 'data:/data'
+
+    environment:
+      - DEFAULT_ADMIN_USERNAME=admin
+      - DEFAULT_ADMIN_PASSWORD=pass4Zinc
+      - DEBUG=1
+      - IS_CONTAINER=true
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge
+
+# persistence
+volumes:
+  data:
+    driver: local

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# shellcheck disable=SC1091
+
+[ -n "${DEBUG:+1}" ] && set -x
+
+. /etc/s6/s6-init/envs
+
+exec /apps/zincsearch/bin/zinc
