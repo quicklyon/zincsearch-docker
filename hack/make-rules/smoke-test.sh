@@ -6,7 +6,7 @@ ACTION=$2
 SUCCESS_STRING="ZincSearch"
 SERVICE_PORT=8080
 
-. prebuildfs/opt/easysoft/scripts/liblog.sh
+. debian/prebuildfs/opt/easysoft/scripts/liblog.sh
 
 info "Testing $APP_NAME"
 

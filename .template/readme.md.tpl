@@ -96,6 +96,19 @@ docker-compose logs -f {{app_name}}
 - [VERSION]({{APP_DOCKERFILE_GIT_URL}}/blob/{{REPO_BRANCH}}/VERSION) 文件中详细的定义了Makefile可以操作的版本
 - [docker-compose.yml]({{APP_DOCKERFILE_GIT_URL}}/blob/{{REPO_BRANCH}}/docker-compose.yml)
 
+### 6.2 本地测试
+
+添加一条记录
+
+```bash
+curl \
+  -u admin:pass4Zinc \
+  -XPUT \
+  -d '{"QuickOn":"渠成软件百宝箱"}' \
+  http://localhost:8080/api/myfirstindex/_doc
+```
+打开浏览器，通过UI页面查看创建的记录是否存在。
+
 ## 七、版本升级
 
 {{APP_UPDATE}}
