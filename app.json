@@ -6,7 +6,7 @@
     "GitUrl": "https://github.com/zinclabs/zinc",
     "DockerfileUrl": "https://github.com/quicklyon/zincsearch-docker",
     "DockerfileRepoBranch":"master",
-    "InstallDocUrl": "https://www.qucheng.com/app-install/install-zincsearch-<number>.html",
+    "InstallDocUrl": "https://www.qucheng.com/app-install/install-zincsearch-146.html",
     "Docker": {
         "Name": "zincsearch",
         "OS": "debian-11",

@@ -10,7 +10,7 @@
 
 ## 快速参考
 
-- 通过 [渠成软件百宝箱](https://www.qucheng.com/app-install/install-zincsearch-<number>.html) 一键安装 **ZincSearch**
+- 通过 [渠成软件百宝箱](https://www.qucheng.com/app-install/install-zincsearch-146.html) 一键安装 **ZincSearch**
 - [Dockerfile 源码](https://github.com/quicklyon/zincsearch-docker)
 - [ZincSearch 源码](https://github.com/zinclabs/zinc)
 - [ZincSearch 官网](https://zincsearch.com/)
