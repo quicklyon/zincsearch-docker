@@ -39,11 +39,21 @@ add_newtag(){
 }
 #====== main =======
 if [ "$LATEST_VER" != "$CURRENT_VER" ];then
+  info "ZincSearch new version->$LATEST_VER was detected."
+  
+  # 将新版本写入到版本文件
   echo "$LATEST_VER" > VERSION
+  
+  # 生成changelog文件
   gen_changelog
+
+  # 生成镜像tag文档
   add_newtag "$LATEST_VER"
+  
+  # 更新readme文档
   q-render-readme
-  info "ZincSearch new version->$LATEST_VER was detected. Please rebuild the image."
+  
+  # 构建镜像，并提交代码
   make build \
   && make smoke-test \
   && git add . \
