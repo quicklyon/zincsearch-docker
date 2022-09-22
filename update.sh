@@ -1,15 +1,55 @@
 #!/bin/bash
 
+# shellcheck disable=SC1091
+
 set -Eeuo pipefail
 
+. debian/prebuildfs/opt/easysoft/scripts/liblog.sh
+
+TODAY=$(date +%Y%m%d)
 REPO_URL="https://api.github.com/repos/zinclabs/zinc/releases/latest"
 
-LATEST_VER=$( curl -s -L $REPO_URL | jq -r .tag_name | sed 's/^v//')
-CURRENT_VER=$( cat VERSION)
+MATE_INFO=$(curl -s -L $REPO_URL)
+LATEST_VER=$( echo "$MATE_INFO" | jq -r .tag_name | sed 's/^v//')
+export LATEST_VER
 
+BODY=$( echo "$MATE_INFO" | jq -r .body)
+export BODY
+
+
+CURRENT_VER=$( cat VERSION)
+export CURRENT_VER
+
+GITURL=$(jq -r .GitUrl app.json)
+export GITURL
+
+# generate new version changelog
+gen_changelog(){
+  info "Generate changelog/${TODAY}.md ..."
+  sleep 2
+  render-template .template/changelog.md.tpl > changelog/"${TODAY}".md && cat changelog/"${TODAY}".md
+}
+
+# 镜像tag模板增加新版本信息
+add_newtag(){
+  ver=${1:? version is error}
+  info "Add new tag to 03-release-tags.md ..."
+  sed -i "2 a - [$ver-$TODAY]($GITURL/releases/tag/v$ver)" .template/03-release-tags.md
+  cat .template/03-release-tags.md
+}
+#====== main =======
 if [ "$LATEST_VER" != "$CURRENT_VER" ];then
   echo "$LATEST_VER" > VERSION
-  echo "ZincSearch new version->$LATEST_VER was detected. Please rebuild the image."
+  gen_changelog
+  add_newtag "$LATEST_VER"
+  q-render-readme
+  info "ZincSearch new version->$LATEST_VER was detected. Please rebuild the image."
+  make build \
+  && make smoke-test \
+  && git add . \
+  && git commit -m "ZincSearch update to $LATEST_VER" \
+  && git push \
+  && gh release create v"$LATEST_VER" -F changelog/"$TODAY".md
 else
-  echo "$CURRENT_VER is the latest version."
+  info "$CURRENT_VER is the latest version."
 fi
