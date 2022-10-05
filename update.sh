@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Info   : ZincSearch version check and docker image build
+# Author : zhouyq zhouyueqiu@easycorp.ltd
+# CTime  : 2022.9.22
+
 # shellcheck disable=SC1091
 
 set -Eeuo pipefail
@@ -34,7 +38,13 @@ gen_changelog(){
 add_newtag(){
   ver=${1:? version is error}
   info "Add new tag to 03-release-tags.md ..."
-  sed -i "2 a - [$ver-$TODAY]($GITURL/releases/tag/v$ver)" .template/03-release-tags.md
+  tag_exist=$(grep "$ver-$TODAY" .template/03-release-tags.md)
+  
+  # 如果tag不存在，添加新tag
+  if [ "$tag_exist" == "" ];then
+    sed -i "2 a - [$ver-$TODAY]($GITURL/releases/tag/v$ver)" .template/03-release-tags.md
+  fi
+
   cat .template/03-release-tags.md
 }
 #====== main =======
