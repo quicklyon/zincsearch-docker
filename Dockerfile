@@ -1,4 +1,4 @@
-FROM debian:11.5-slim
+FROM debian:11.7-slim
 
 LABEL maintainer "zhouyueqiu zhouyueqiu@easycorp.ltd"
 
@@ -24,8 +24,8 @@ ENV ZINC_DATA_PATH="/data"
 
 WORKDIR /apps/zincsearch
 RUN mkdir bin \
-    && curl -skL https://github.com/zinclabs/zinc/releases/download/v${APP_VER}/zinc_${APP_VER}_Linux_x86_64.tar.gz | tar xvz -C . \
-    && mv zinc ./bin
+    && curl -skL https://github.com/zincsearch/zincsearch/releases/download/v${APP_VER}/zincsearch_${APP_VER}_Linux_x86_64.tar.gz | tar xvz -C . \
+    && mv zincsearch ./bin
 
 # Copy zincsearch config files
 COPY debian/rootfs /

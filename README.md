@@ -50,6 +50,7 @@ ZincSearch官网：[https://zincsearch.com/](https://zincsearch.com/)
 
 <!-- 这里是镜像的【Tag】信息，通过命令维护，详情参考：https://github.com/quicklyon/template-toolkit -->
 - [latest](https://github.com/zinclabs/zinc/releases)
+- [0.3.7-20230821](https://github.com/zinclabs/zinc/releases/tag/v0.4.7)
 - [0.3.6-20230208](https://github.com/zinclabs/zinc/releases/tag/v0.3.6)
 - [0.3.4-20221107](https://github.com/zinclabs/zinc/releases/tag/v0.3.4)
 - [0.3.3-20220922](https://github.com/zinclabs/zinc/releases/tag/v0.3.3)

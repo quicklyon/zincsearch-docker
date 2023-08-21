@@ -6,4 +6,4 @@
 
 . /etc/s6/s6-init/envs
 
-exec /apps/zincsearch/bin/zinc
+exec /apps/zincsearch/bin/zincsearch

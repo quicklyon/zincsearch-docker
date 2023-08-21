@@ -16,7 +16,7 @@ set -o pipefail
 print_welcome_page
 
 # Enable apache
-make_soft_link "/etc/s6/s6-available/zinc" "/etc/s6/s6-enable/01-zinc" "root"
+make_soft_link "/etc/s6/s6-available/zincsearch" "/etc/s6/s6-enable/01-zincsearch" "root"
 
 if [ $# -gt 0 ]; then
     exec "$@"
